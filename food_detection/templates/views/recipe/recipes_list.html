@@ -1,0 +1,14 @@
+{% include 'components/header.html' %}
+
+{% load heroicons %}
+<a href="{% url 'recipe_form' %}">{% heroicon_solid "plus-circle" size=120 %}</a>
+
+{% for recipe in recipes %}
+<a href="{% url 'my_recipe' recipe.id %}">
+    <div class="recipe">
+        <h2>{{ recipe.name }}</h2>
+    </div>
+</a>
+{% endfor %}
+
+{% include 'components/footer.html' %}
