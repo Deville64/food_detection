@@ -5,9 +5,9 @@ class Recipe(models.Model):
     name = models.CharField(max_length=100, blank=False)
     instructions = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    preparation_time = models.DurationField()
-    cooking_time = models.DurationField()
-    picture = models.ImageField(upload_to='food_detection/static/recipe_picture')
+    preparation_time = models.CharField(max_length=20)
+    cooking_time = models.CharField(max_length=20)
+    picture = models.ImageField(upload_to='pictures')
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 

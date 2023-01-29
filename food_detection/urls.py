@@ -17,4 +17,4 @@ urlpatterns = [
     path('recipe_form/', recipe_form_controller.show_create_recipe, name='recipe_form'),
     path('my_recipe/<int:recipe_id>/', my_recipe_controller.show, name='my_recipe'),
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,14 @@
 {% include 'components/header.html' %}
 
-{{ recipe.name }}
+{{ recipe.name }}<br>
+
+<img src="{{ recipe.picture.url }}" alt="iamge"><br>
+{{ recipe.preparation_time }}<br>
+{{ recipe.cooking_time }}<br>
+
+{% for recipeingredient in recipeingredients %}
+    {{ recipeingredient.ingredient.name }} {{ recipeingredient.quantity }}<br>
+{% endfor %}
+{{ recipe.instructions }}<br>
 
 {% include 'components/footer.html' %}
