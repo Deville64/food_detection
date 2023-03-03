@@ -7,7 +7,7 @@ class Recipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     preparation_time = models.CharField(max_length=20)
     cooking_time = models.CharField(max_length=20)
-    picture = models.ImageField(upload_to='pictures')
+    picture = models.ImageField(upload_to='enrolled')
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 

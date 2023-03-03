@@ -1,11 +1,20 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from food_detection.models import Recipe, Ingredient, RecipeIngredient
+import shutil
 
 @login_required
 def show_create_recipe(request):
     if request.method == 'POST':
-        picture = request.FILES.get('picture')
+        if request.session['picture_path']:
+            picture = shutil.move(request.session['picture_path'], 'media/enrolled/')
+            
+            del request.session['picture_path']
+            del request.session['ingredients_list']
+
+        else:
+            picture = request.FILES.get('picture')
+
         name = request.POST.get('name')
         instructions = request.POST.get('instructions')
         preparation_time = request.POST.get('preparation_time')

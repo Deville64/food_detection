@@ -11,3 +11,4 @@ media/
 .env
 .DS_Store
 db.sqlite3
+best.pt

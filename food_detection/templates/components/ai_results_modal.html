@@ -1,0 +1,30 @@
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Résultats</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Votre photo contient les ingredients suivants:</h5>
+                <img src="{{ request.session.picture_path }}">
+                {% for ingredient in request.session.ingredients_list %}
+                <p>-{{ ingredient }}</p>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'recipe_form' %}">Créer ma recette</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if ingredients_list %}
+<script>
+    window.onload = function () {
+        var myModalEl = document.getElementById('modal');
+        var myModal = new bootstrap.Modal(myModalEl);
+        myModal.show();
+    };
+</script>
+{% endif %}

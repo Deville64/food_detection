@@ -7,7 +7,7 @@ from .controllers.recipe import recipe_form_controller, recipe_list_controller, 
 
 urlpatterns = [
     #free
-    path('', home_controller.show, name='home'),
+    path('', home_controller.show_ingredients_check, name='home'),
     path('sign_up/', sign_up_controller.show_sign_up, name='sign_up'),
     path('login/', login_controller.show_login, name='login'),
 

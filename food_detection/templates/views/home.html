@@ -1,6 +1,17 @@
 {% include 'components/header.html' %}
 
-{% load static %}
-<img src="{% static 'mexico.jpeg' %}" alt="My image">
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label for="picture">Picture:</label>
+  <input type="file" id="picture" name="picture" required>
+  <img id="picturePreview" src="">
+  <br>
+  <br>
+  <input type="submit" value="Envoyer">
+</form>
 
+{% include 'components/ai_results_modal.html' %}
+
+{% load static %}
+<script src="{% static 'JS/image_preview.js' %}"></script>
 {% include 'components/footer.html' %}
