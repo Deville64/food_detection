@@ -1,14 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Ma recette{% endblock %}
+
+
+{% block content %}
 {% include 'components/header.html' %}
 
-{{ recipe.name }}<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class=" mx-auto text-center">
+                <h1 class="text-center">{{ recipe.name }}</h1>
+                <img src="{{ recipe.picture.url }}" alt="{{ recipe.name }}" class="img-fluid">
+            </div>
 
-<img src="{{ recipe.picture.url }}" alt="iamge"><br>
-{{ recipe.preparation_time }}<br>
-{{ recipe.cooking_time }}<br>
+            <hr>
+            <div class="row">
+                <div class="col-md-4 mx-auto">
+                    <h4 class="text-center">Temps de préparation :</h4>
+                    <p class="text-center">{{ recipe.preparation_time }}</p>
+                </div>
+                <div class="col-md-4 mx-auto">
+                    <h4 class="text-center">Temps de cuisson :</h4>
+                    <p class="text-center">{{ recipe.cooking_time }}</p>
+                </div>
+            </div>
+            <hr>
+            <h4>Ingrédients :</h4>
+            <ul>
+                {% for recipeingredient in recipeingredients %}
+                <li>{{ recipeingredient.ingredient.name }} {{ recipeingredient.quantity }}</li>
+                {% endfor %}
+            </ul>
+            <hr>
+            <h4>Instructions :</h4>
+            <p>{{ recipe.instructions }}</p>
+        </div>
+    </div>
+</div>
 
-{% for recipeingredient in recipeingredients %}
-    {{ recipeingredient.ingredient.name }} {{ recipeingredient.quantity }}<br>
-{% endfor %}
-{{ recipe.instructions }}<br>
+
 
 {% include 'components/footer.html' %}
+{% endblock %}

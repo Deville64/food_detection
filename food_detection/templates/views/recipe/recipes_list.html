@@ -1,14 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Liste des recettes{% endblock %}
+
+
+{% block content %}
 {% include 'components/header.html' %}
 
-{% load heroicons %}
-<a href="{% url 'recipe_form' %}">{% heroicon_solid "plus-circle" size=120 %}</a>
 
-{% for recipe in recipes %}
-<a href="{% url 'my_recipe' recipe.id %}">
-    <div class="recipe">
-        <h2>{{ recipe.name }}</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 text-center mb-4">
+            {% load heroicons %}
+            <a href="{% url 'recipe_form' %}">
+                {% heroicon_solid "plus-circle" size=120 %}
+            </a>
+        </div>
     </div>
-</a>
-{% endfor %}
+
+    <div class="row">
+        {% for recipe in recipes %}
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'my_recipe' recipe.id %}">
+                <div class="recipe card h-100">
+                    <h5 class="card-title text-center">{{ recipe.name }}</h5>
+                    <img src="/{{ recipe.picture }}" class="card-img-top img-fluid recipe-img">
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 
 {% include 'components/footer.html' %}
+{% endblock %}

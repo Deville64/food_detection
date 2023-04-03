@@ -1,49 +1,40 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% load heroicons %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <title>Mon site</title>
-</head>
-
-<body>
-  <header class="bg-success">
-    <div class="container-xl">
-      <div class="row">
-        <div class="col-2">
-          <a href="{% url 'home' %}"><img src="/path/to/logo.png" alt="Logo"></a>
-
-        </div>
-        <div class="col-6">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
-              aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-          </div>
-          </form>
-        </div>
-        <div class="float-right col-2">
-          {% if user.is_authenticated %}
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="{% url 'recipes_list' %}">Mes recettes</a>
-              <a class="dropdown-item" href="#">Profil</a>
-              <a class="dropdown-item" href="{% url 'logout' %}">Se déconnecter</a>
-            </div>
-          </div>
-          {% else %}
-          <a href="{% url 'sign_up' %}">Inscription</a>
-          <a href="{% url 'login' %}">Se connecter</a>
-          {% endif %}
-        </div>
+<header class="bg-success py-2">
+  <div class="container-xl">
+    <div class="row align-items-center">
+      <div class="col-md-2">
+        <a href="{% url 'home' %}"><img src="logo.png" alt="Logo"></a>
       </div>
+
+      <div class="col-md-6">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Recherche d'ingrédient" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Rechercher</button>
+        </form>
+      </div>
+
+      <div class="col-md-4 text-end">
+        {% if user.is_authenticated %}
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {% heroicon_outline "user" %} {{ user.username }}
+          </button>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% url 'recipes_list' %}">{% heroicon_outline "list-bullet" %} Mes
+              recettes</a>
+            <a class="dropdown-item" href="#">{% heroicon_outline "cog-6-tooth" %} Profil</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">{% heroicon_outline "arrow-left-on-rectangle" %} Se
+              déconnecter</a>
+          </div>
+        </div>
+        {% else %}
+        <a href="{% url 'sign_up' %}" class="btn btn-light me-2">Inscription</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-light">Se connecter</a>
+        {% endif %}
+      </div>
+
     </div>
-  </header>
+  </div>
+</header>
